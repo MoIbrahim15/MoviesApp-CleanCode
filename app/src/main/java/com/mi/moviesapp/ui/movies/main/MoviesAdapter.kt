@@ -32,7 +32,7 @@ class MoviesViewHolder(mView: View) : RecyclerView.ViewHolder(mView) {
     fun bind(movie: Movie, listener: OnClickListener) {
         val p: List<String> = movie.image.split("/")
         val imageLink = "https://drive.google.com/uc?export=download&id=" + p[5]
-        Picasso.get().load(imageLink).into(itemView.imgMovie)
+        Picasso.get().load(imageLink).placeholder(R.drawable.ic_launcher_background).into(itemView.imgMovie)
         itemView.setOnClickListener { listener.onClick(movie) }
     }
 }

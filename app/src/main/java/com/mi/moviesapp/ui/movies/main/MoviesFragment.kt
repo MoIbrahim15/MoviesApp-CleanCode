@@ -27,6 +27,13 @@ class MoviesFragment : BaseFragment() {
                         moviesViewModel.setMovies(movies)
                     }
                 }
+                dataState.loading.let { loading ->
+                    if (loading.isLoading)
+                        progress_bar.visibility = View.VISIBLE
+                    else
+                        progress_bar.visibility = View.GONE
+
+                }
             }
         })
 
