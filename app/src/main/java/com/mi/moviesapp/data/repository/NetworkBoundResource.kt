@@ -17,7 +17,7 @@ abstract class NetworkBoundResource<ResponseObject, ViewStateType>(
     fun call(): Flow<DataState<ViewStateType>> = flow {
         emit(DataState.LOADING(isLoading = true))
 
-        if (isNetworkRequest) {
+        if (isNetworkAvailable) {
             if (isNetworkAvailable) {
                 try {
                     val apiResponse = createNetworkRequest()
