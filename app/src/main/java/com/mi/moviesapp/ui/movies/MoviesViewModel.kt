@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.mi.moviesapp.data.response_handler.DataState
 import com.mi.moviesapp.domain.movies.MoviesUseCase
 import com.mi.moviesapp.ui.BaseViewModel
+import com.mi.moviesapp.ui.movies.state.MovieDetailsFields
 import com.mi.moviesapp.ui.movies.state.MoviesEventState
 import com.mi.moviesapp.ui.movies.state.MoviesRecyclerView
 import com.mi.moviesapp.ui.movies.state.MoviesViewState
@@ -13,16 +14,14 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 class MoviesViewModel(val useCase: MoviesUseCase) :BaseViewModel<MoviesEventState,MoviesViewState>() {
 
     override fun handleEventState(eventState: MoviesEventState): LiveData<DataState<MoviesViewState>> {
-//        return when (eventState) {
-//            is MoviesEventState.GetMoviesEvent -> {
-//            }
-//            is MoviesEventState.GetMovieDetailsEvent -> {
-//                useCase.invoke(
-//                    eventState.id,
-//                )
-//            }
-//        }
-   return useCase.invoke()
+        return when (eventState) {
+            is MoviesEventState.GetMoviesEvent -> {
+                 useCase.getMovies()
+            }
+            is MoviesEventState.GetMovieDetailsEvent -> {
+                useCase.getMoviesDetails(eventState.id)
+            }
+        }
 
 }
 
@@ -34,6 +33,13 @@ class MoviesViewModel(val useCase: MoviesUseCase) :BaseViewModel<MoviesEventStat
         val update = getCurrentViewStateOrNew()
         if (update.moviesRecyclerView != moviesRecyclerView)
             update.moviesRecyclerView = moviesRecyclerView
+        _viewState.value = update
+    }
+
+    fun setMoviesDetails(movieDetails: MovieDetailsFields?) {
+        val update = getCurrentViewStateOrNew()
+        if (update.movieDetailsFields != movieDetails)
+            update.movieDetailsFields = movieDetails
         _viewState.value = update
     }
 }

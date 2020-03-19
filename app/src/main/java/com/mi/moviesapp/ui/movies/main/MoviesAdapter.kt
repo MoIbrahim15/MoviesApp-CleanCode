@@ -10,7 +10,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 
-class MoviesAdapter(var items: MutableList<Movie>) :
+class MoviesAdapter(var items: MutableList<Movie>, var listener : OnClickListener) :
     RecyclerView.Adapter<MoviesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
@@ -24,15 +24,15 @@ class MoviesAdapter(var items: MutableList<Movie>) :
     }
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(items[position],listener)
     }
 }
 
 class MoviesViewHolder(mView: View) : RecyclerView.ViewHolder(mView) {
-    fun bind(movie: Movie) {
-
+    fun bind(movie: Movie, listener: OnClickListener) {
         val p: List<String> = movie.image.split("/")
         val imageLink = "https://drive.google.com/uc?export=download&id=" + p[5]
         Picasso.get().load(imageLink).into(itemView.imgMovie)
+        itemView.setOnClickListener { listener.onClick(movie) }
     }
 }

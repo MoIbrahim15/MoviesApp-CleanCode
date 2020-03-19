@@ -16,5 +16,10 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.mi.moviesapp.ui.movies.details.DetailsFragment"
-        android:label="DetailsFragment" />
+        android:label="DetailsFragment">
+        <argument
+            android:name="id"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -9,6 +9,7 @@ import com.mi.moviesapp.ui.movies.state.MoviesRecyclerView
 import com.mi.moviesapp.ui.movies.state.MoviesViewState
 import com.mi.moviesapp.data.repository.BaseRepository
 import com.mi.moviesapp.data.repository.NetworkBoundResource
+import com.mi.moviesapp.ui.movies.state.MovieDetailsFields
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
@@ -49,6 +50,48 @@ class MoviesRepository(
                     DataState.SUCCESS(
                         MoviesViewState(
                             moviesRecyclerView = MoviesRecyclerView(response)
+                        )
+                    )
+                )
+
+//                    }
+            }
+
+            override suspend fun createCacheRequest() {
+
+            }
+        }
+        emitAll(networkBoundResource.call())
+    }
+
+    fun getMoviesDetails(id: Int): Flow<DataState<MoviesViewState>> = flow {
+
+        val networkBoundResource = object : NetworkBoundResource<Movie, MoviesViewState>(
+            errorHandler,
+            true,
+            true
+        ) {
+            override suspend fun createNetworkRequest(): Movie {
+                return apiService.getMoviesDetails(id)
+            }
+
+            override suspend fun handleSuccess(response: Movie) {
+//                    moviesDao.insertOrIgnore(Account(response.pk ))
+//                    val result = moviesDao.insert(AuthToken(response.pk))
+//                    if (result < 0) {
+//                        emit(
+//                            DataState.ERROR(
+//                                Response(
+//                                    R.string.error_something_went_wrong,
+//                                    ResponseView.DIALOG()
+//                                )
+//                            )
+//                        )
+//                    } else {
+                emit(
+                    DataState.SUCCESS(
+                        MoviesViewState(
+                            movieDetailsFields = MovieDetailsFields(response)
                         )
                     )
                 )

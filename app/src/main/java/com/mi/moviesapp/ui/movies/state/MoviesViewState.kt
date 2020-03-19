@@ -13,7 +13,5 @@ data class MoviesRecyclerView(
 
 
 data class MovieDetailsFields(
-    var imageUrl: String? = null,
-    var title: String? = null,
-    var desc: String? = null
+    var movie: Movie? = null
 )

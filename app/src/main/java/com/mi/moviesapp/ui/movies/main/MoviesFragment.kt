@@ -3,7 +3,9 @@ package com.mi.moviesapp.ui.movies.main
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import com.mi.moviesapp.R
+import com.mi.moviesapp.data.model.Movie
 import com.mi.moviesapp.ui.BaseFragment
 import com.mi.moviesapp.ui.movies.MoviesViewModel
 import com.mi.moviesapp.ui.movies.state.MoviesEventState
@@ -31,7 +33,15 @@ class MoviesFragment : BaseFragment() {
         moviesViewModel.viewState.observe(viewLifecycleOwner, Observer {
             it.moviesRecyclerView?.let { moviesRecyclerView ->
                 moviesRecyclerView.items?.let { items ->
-                    val adapter = MoviesAdapter(items)
+                    val adapter = MoviesAdapter(items, object : OnClickListener {
+                        override fun onClick(item: Movie) {
+                            val action =
+                                MoviesFragmentDirections.actionMoviesFragmentToDetailsFragment(
+                                    item.id
+                                )
+                            Navigation.findNavController(view).navigate(action)
+                        }
+                    })
                     recyclerView.adapter = adapter
                 }
             }

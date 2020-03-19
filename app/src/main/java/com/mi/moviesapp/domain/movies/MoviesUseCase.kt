@@ -12,8 +12,11 @@ import kotlinx.coroutines.flow.flowOn
 @ExperimentalCoroutinesApi
 class MoviesUseCase  constructor(val repository: MoviesRepository) {
 
-    fun invoke() : LiveData<DataState<MoviesViewState>> {
+    fun getMovies() : LiveData<DataState<MoviesViewState>> {
         return repository.getMovies().flowOn(Dispatchers.IO).asLiveData()
     }
 
+    fun getMoviesDetails(id: Int): LiveData<DataState<MoviesViewState>> {
+        return repository.getMoviesDetails(id).flowOn(Dispatchers.IO).asLiveData()
+    }
 }
