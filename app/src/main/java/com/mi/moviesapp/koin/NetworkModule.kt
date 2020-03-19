@@ -1,5 +1,7 @@
 package com.mi.moviesapp.koin
 
+import com.mi.moviesapp.data.response_handler.ErrorHandler
+import com.mi.moviesapp.ui.movies.state.MoviesViewState
 import com.mi.moviesapp.utils.Constants.Companion.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -11,7 +13,7 @@ import java.util.concurrent.TimeUnit
 
 val networkModule = module {
 
-//    factory { ErrorHandler() }
+    factory { ErrorHandler() }
 
     single {
         val logging = HttpLoggingInterceptor()

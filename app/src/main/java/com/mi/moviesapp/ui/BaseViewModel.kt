@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.mi.moviesapp.data.DataState
+import com.mi.moviesapp.data.response_handler.DataState
 
 abstract class BaseViewModel<EventState, ViewState> : ViewModel() {
 

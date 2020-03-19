@@ -2,4 +2,7 @@
     <string name="app_name">MoviesApp-CleanCode</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="error_something_went_wrong">Opps</string>
+    <string name="error_unknown">unknow error</string>
+    <string name="error_no_internet_connection">No Internet Connection</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.mi.moviesapp.data
+package com.mi.moviesapp.data.response_handler
 
 import com.mi.moviesapp.utils.SingleLiveData
 

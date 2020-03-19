@@ -2,9 +2,9 @@ package com.mi.moviesapp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.mi.moviesapp.data.DataState
-import com.mi.moviesapp.data.Response
-import com.mi.moviesapp.data.ResponseView
+import com.mi.moviesapp.data.response_handler.DataState
+import com.mi.moviesapp.data.response_handler.Response
+import com.mi.moviesapp.data.response_handler.ResponseView
 abstract class BaseActivity : AppCompatActivity(),
     DataStateChangeListener {
 

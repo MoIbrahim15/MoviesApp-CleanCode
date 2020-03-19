@@ -7,7 +7,7 @@ import com.mi.moviesapp.data.model.Movie
 @Database(entities = [Movie::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun getMoviesDao(): AuthMoviesDao
+    abstract fun getMoviesDao(): MoviesDao
 
     companion object {
         const val DATABASE_NAME = "app_db"

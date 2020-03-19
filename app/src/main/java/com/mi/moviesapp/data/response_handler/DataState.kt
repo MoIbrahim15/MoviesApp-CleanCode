@@ -1,4 +1,4 @@
-package com.mi.moviesapp.data
+package com.mi.moviesapp.data.response_handler
 
 import com.mi.moviesapp.utils.SingleLiveData
 
@@ -29,6 +29,10 @@ sealed class DataState<T>(
     )
 
     class ERROR<T>(response: Response? = null) : DataState<T>(
-        error = SingleLiveData.dataEvent(Error(response))
+        error = SingleLiveData.dataEvent(
+            Error(
+                response
+            )
+        )
     )
 }

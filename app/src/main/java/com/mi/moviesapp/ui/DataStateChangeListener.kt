@@ -1,6 +1,6 @@
 package com.mi.moviesapp.ui
 
-import com.mi.moviesapp.data.DataState
+import com.mi.moviesapp.data.response_handler.DataState
 
 
 interface DataStateChangeListener {
